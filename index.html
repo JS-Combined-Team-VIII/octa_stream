@@ -1,1 +1,97 @@
 <!-- Vee -->
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>OctaStream — Sign In</title>
+<link rel="stylesheet" href="src/output.css">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Figtree', 'sans-serif'],
+      }
+    }
+  }
+}
+</script>
+</head>
+
+<body class="bg-[#0f1117] text-white min-h-screen flex items-center justify-center px-4 font-sans">
+
+<div class="w-full max-w-md bg-[#1a1d27] border border-white/10 rounded-2xl p-8 shadow-xl">
+
+<!-- Logo -->
+<div class="flex items-center gap-2 mb-6">
+  <div class="w-9 h-9 bg-purple-600 rounded-lg flex items-center justify-center">
+    ▶
+  </div>
+  <h1 class="font-bold text-lg">Octa<span class="text-purple-400">Stream</span></h1>
+</div>
+
+<!-- Heading -->
+<h2 id="formHeading" class="text-xl font-bold mb-1">Sign in to watch</h2>
+<p id="formSubheading" class="text-sm text-gray-400 mb-6">Welcome back — your movies are waiting.</p>
+
+<!-- Tabs -->
+<div class="flex bg-black/30 rounded-full p-1 mb-6">
+  <button id="loginTab" onclick="switchTab('login')" class="flex-1 py-2 rounded-full bg-[#22263a] font-semibold text-sm">Sign In</button>
+  <button id="signupTab" onclick="switchTab('signup')" class="flex-1 py-2 rounded-full text-gray-400 font-semibold text-sm">Create Account</button>
+</div>
+
+<!-- LOGIN -->
+<div id="loginPanel">
+  <p id="loginError" class="hidden text-red-400 text-sm mb-3"></p>
+  <p id="loginSuccess" class="hidden text-green-400 text-sm mb-3"></p>
+
+  <input id="loginEmail" type="email" placeholder="Email"
+    class="w-full mb-3 p-3 rounded-lg bg-black/40 border border-white/10 focus:border-purple-500 outline-none"/>
+
+  <input id="loginPassword" type="password" placeholder="Password"
+    class="w-full mb-4 p-3 rounded-lg bg-black/40 border border-white/10 focus:border-purple-500 outline-none"/>
+
+  <button id="loginBtn" onclick="handleLogin()"
+    class="w-full bg-purple-600 hover:bg-purple-500 py-3 rounded-full font-semibold">
+    Sign In
+  </button>
+
+  <p class="text-sm text-gray-400 mt-4 text-center">
+    Don’t have an account?
+    <a href="#" onclick="switchTab('signup')" class="text-purple-400 font-semibold">Create one</a>
+  </p>
+</div>
+
+<!-- SIGNUP -->
+<div id="signupPanel" class="hidden">
+  <p id="signupError" class="hidden text-red-400 text-sm mb-3"></p>
+  <p id="signupSuccess" class="hidden text-green-400 text-sm mb-3"></p>
+
+  <input id="signupEmail" type="email" placeholder="Email"
+    class="w-full mb-3 p-3 rounded-lg bg-black/40 border border-white/10 focus:border-purple-500 outline-none"/>
+
+  <input id="signupPassword" type="password" placeholder="Password"
+    class="w-full mb-3 p-3 rounded-lg bg-black/40 border border-white/10 focus:border-purple-500 outline-none"/>
+
+  <input id="signupConfirm" type="password" placeholder="Confirm Password"
+    class="w-full mb-4 p-3 rounded-lg bg-black/40 border border-white/10 focus:border-purple-500 outline-none"/>
+
+  <button id="signupBtn" onclick="handleSignup()"
+    class="w-full bg-purple-600 hover:bg-purple-500 py-3 rounded-full font-semibold">
+    Create Account
+  </button>
+
+  <p class="text-sm text-gray-400 mt-4 text-center">
+    Already have an account?
+    <a href="#" onclick="switchTab('login')" class="text-purple-400 font-semibold">Sign in</a>
+  </p>
+</div>
+
+</div>
+
+<script src="js/auth.js"></script>
+</body>
+</html>
