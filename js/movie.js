@@ -16,10 +16,13 @@ async function loadMovieDetail() {
       return;
     }
 
-    // 1. Populate Text & Images
     document.getElementById("title").textContent = movie.title;
     document.getElementById("genre").textContent = movie.genre;
     document.getElementById("description").textContent = movie.description;
+    document.getElementById("year").textContent = movie.year;
+    document.getElementById("rating").textContent = movie.rating;
+    document.getElementById("director").textContent = movie.director || "N/A";
+    // document.getElementById("playButton").href = `watch.html?id=${movie.id}`;
     document.getElementById("poster").src = movie.poster;
 
     const heroElement = document.getElementById("hero");
@@ -27,7 +30,7 @@ async function loadMovieDetail() {
         heroElement.style.backgroundImage = `url(${movie.banner || movie.poster})`;
     }
 
-    // 2. REWRITTEN VIDEO LOGIC (For YouTube Iframes)
+
     const videoPlayer = document.getElementById("videoPlayer");
 
     if (videoPlayer && movie.video) {
@@ -42,23 +45,15 @@ async function loadMovieDetail() {
   }
 }
 
-// HELPER: Fixes YouTube URLs for iframes
+
 function getYoutubeEmbedUrl(url) {
     if (!url) return "";
     
-    // Regular expression to extract the 11-character Video ID
+    
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
     const match = url.match(regExp);
-    
-    // The ID is captured in the second group of this regex
-    const videoId = (match && match[2].length === 11) ? match[2] : null;
-    
-    // Return the /embed/ format + autoplay & mute (for browser permission)
-   
-    
-   return videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1` : url;
+    const videoId = (match && match[2].length === 11) ? match[2] : null; 
+    return videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0` : url;
 
 }
-
-// Initialize the page
 loadMovieDetail();
